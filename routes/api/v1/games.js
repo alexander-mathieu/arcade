@@ -72,4 +72,20 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+router.delete('/:id', function(req, res, next) {
+  Game.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(game => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(204).send(JSON.stringify(game));
+  })
+  .catch(error => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(500).send({ error });
+  })
+})
+
 module.exports = router;
