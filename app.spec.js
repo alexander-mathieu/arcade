@@ -30,13 +30,34 @@ describe('api', () => {
 
     test('should return an array of game objects', () => {
       return request(app).get('/api/v1/games').then(response => {
-        let games = response.body
+        let games = response.body;
 
         expect(games.length).toBe(4)
         expect(Object.keys(games[0])).toContain('title')
         expect(Object.keys(games[0])).toContain('price')
         expect(Object.keys(games[0])).toContain('releaseYear')
         expect(Object.keys(games[0])).toContain('title')
+      });
+    });
+  });
+
+  describe('test the games show path', () => {
+    test('should return 200', () => {
+      return request(app).get('/api/v1/games/1').then(response => {
+        expect(response.statusCode).toBe(200)
+      });
+    });
+
+    test('should return a single game object', () => {
+      return request(app).get('/api/v1/games/1').then(response => {
+        let game = response.body[0];
+        
+        expect(Object.keys(game)).toContain('title')
+        expect(Object.keys(game)).toContain('price')
+        expect(Object.keys(game)).toContain('releaseYear')
+        expect(Object.keys(game)).toContain('title')
+
+        expect(response.body[1]).toBe(undefined)
       });
     });
   });
