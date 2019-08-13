@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN
   }, {});
   Game.associate = function(models) {
-    // associations can be defined here
+    Game.belongsTo(models.Store, {
+      foreignKey: 'StoreID',
+      as: 'store'
+    })
   };
   return Game;
 };
