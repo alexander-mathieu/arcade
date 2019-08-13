@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Game.associate = function(models) {
     Game.belongsTo(models.Store, {
-      foreignKey: 'StoreID',
+      foreignKey: 'StoreId',
       as: 'store'
     })
   };
