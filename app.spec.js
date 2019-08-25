@@ -51,7 +51,7 @@ describe('api', () => {
     test('should return a single game object', () => {
       return request(app).get('/api/v1/games/1').then(response => {
         let game = response.body[0];
-        
+
         expect(Object.keys(game)).toContain('title')
         expect(Object.keys(game)).toContain('price')
         expect(Object.keys(game)).toContain('releaseYear')
